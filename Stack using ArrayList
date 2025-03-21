@@ -1,0 +1,82 @@
+import java.util.ArrayList;
+import java.util.*;
+class GenericStackArray1<T>{
+	private ArrayList<T> stack;
+	public GenericStackArray1(){
+		stack=new ArrayList<>();
+	}
+	public void push(T element){
+		stack.add(element);
+	}
+	public T pop(){
+		if(stack.isEmpty()){
+			System.out.println("stack underflow");
+			return null;
+		}
+		return stack.remove(stack.size()-1);
+	}
+	public T peek(){
+		if(stack.isEmpty()){
+			System.out.println("Stack is Empty");
+			return null;
+		}
+		return stack.get(stack.size()-1);
+	}
+	public boolean isEmpty(){
+		return stack.isEmpty();
+	}
+	public void displayStack(){
+		if(stack.isEmpty()){
+			System.out.println("Stack is Empty");
+		}
+		else{
+			System.out.println("Stack Elements:"+stack);
+		}
+	}
+}
+public class GenericStackArray{
+
+	public static void main(String args[]){
+		Scanner sc=new Scanner(System.in);
+		GenericStackArray1<String> stringstack=new GenericStackArray1<>();
+		System.out.println("Dyanmically Generic stack using ArrayList");
+		while(true){
+			System.out.println("\n choose an operation\n");
+			System.out.println("1.push");
+			System.out.println("2.pop\n");
+			System.out.println("3.peek\n");
+			System.out.println("4.display");
+			System.out.println("5.Exit");
+			int ch=sc.nextInt();
+			sc.nextLine();
+			switch(ch){
+				case 1 :
+					   System.out.print("Enter the element to push");
+					   String ele=sc.nextLine();
+					   stringstack.push(ele);
+					   break;
+			   case 2:
+				   		String poppedele=stringstack.pop();
+			   			if(poppedele!=null){
+							System.out.println("Popped ele :"+poppedele);
+						}
+						break;
+			  case 3:
+				  		String topele=stringstack.peek();
+			  			if(topele!=null){
+							System.out.println("Top elem:"+topele);
+						}
+						break;
+			case 4:
+						stringstack.displayStack();
+			             break;
+			case 5:
+						System.out.println("Exiting...");
+						sc.close();
+						return;
+			default:
+						System.out.println("Invalid choice");
+			}
+		}
+	}
+}
