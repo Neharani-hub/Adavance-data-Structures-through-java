@@ -1,2 +1,2 @@
-# Adavance-data-tjrough-java
+# Adavance-data-through-java
 Java
