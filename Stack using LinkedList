@@ -1,5 +1,4 @@
-# java2
-stack using Linked list
+
 import java.util.LinkedList;
 import java.util.*;
 class GenericStackLinked1<T>{
