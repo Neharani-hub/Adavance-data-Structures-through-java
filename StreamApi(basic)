@@ -1,0 +1,55 @@
+import java.util.*;
+import java.util.stream.*;
+public class Streambasic {
+    public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int n1=sc.nextInt();
+        List<Integer> numbers =new ArrayList<>(n1);
+		for(int i=0;i<n1;i++){
+					numbers.add(sc.nextInt());
+		}
+        List<Integer> evenNumbers = numbers.stream()
+                .filter(n -> n % 2 == 0)
+                .collect(Collectors.toList());
+        System.out.println("Even Numbers: " + evenNumbers);
+        List<Integer> squaredNumbers = numbers.stream()
+                .map(n -> n * n)
+                .collect(Collectors.toList());
+        System.out.println("Squared Numbers: " + squaredNumbers);
+        List<Integer> sortedNumbers = numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
+        System.out.println("Sorted Numbers: " + sortedNumbers);
+        List<Integer> duplicateNumbers = Arrays.asList(1, 2, 3, 2, 4, 5, 5, 6, 7, 8, 7);
+        List<Integer> distinctNumbers = duplicateNumbers.stream()
+                .distinct()
+                .collect(Collectors.toList());
+        System.out.println("Distinct Numbers: " + distinctNumbers);
+
+        long count = numbers.stream()
+                .filter(n -> n > 5)
+                .count();
+        System.out.println("Count of numbers greater than 5: " + count);
+
+        int sum = numbers.stream()
+                .reduce(0, Integer::sum);
+        System.out.println("Sum of all numbers: " + sum);
+
+        System.out.print("Numbers: ");
+        numbers.stream()
+                .forEach(n -> System.out.print(n + " "));
+        System.out.println();
+
+        boolean anyMatch = numbers.stream()
+                .anyMatch(n -> n > 8);
+        System.out.println("Any number greater than 8: " + anyMatch);
+
+        boolean allMatch = numbers.stream()
+                .allMatch(n -> n % 2 == 0);
+        System.out.println("All numbers are even: " + allMatch);
+
+        boolean noneMatch = numbers.stream()
+                .noneMatch(n -> n < 0);
+        System.out.println("No number is negative: " + noneMatch);
+    }
+}
