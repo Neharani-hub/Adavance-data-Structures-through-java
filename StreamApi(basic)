@@ -6,7 +6,7 @@ public class Streambasic {
 		int n1=sc.nextInt();
         List<Integer> numbers =new ArrayList<>(n1);
 		for(int i=0;i<n1;i++){
-					numbers.add(sc.nextInt());
+		    numbers.add(sc.nextInt());
 		}
         List<Integer> evenNumbers = numbers.stream()
                 .filter(n -> n % 2 == 0)
