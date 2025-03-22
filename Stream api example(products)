@@ -1,0 +1,62 @@
+import java.util.*;
+import java.util.stream.Collectors;
+
+class Product {
+    private String name;
+    private double price;
+    private double rating;
+    private String type;
+
+    public Product(String name, double price, double rating, String type) {
+        this.name = name;
+        this.price = price;
+        this.rating = rating;
+        this.type = type;
+    }
+
+    public double getPrice() { return price; }
+    public double getRating() { return rating; }
+    public String getType() { return type; }
+
+    @Override
+    public String toString() {
+        return name + " (Price: " + price + ", Rating: " + rating + ")";
+    }
+}
+
+class Streamexample {
+    public static void main(String[] args) {
+        List<Product> products = Arrays.asList(
+            new Product("Laptop", 15000, 4.5, "Electronics"),
+            new Product("Smartphone", 8000, 4.0, "Electronics"),
+            new Product("Tablet", 12000, 4.8, "Electronics"),
+            new Product("Chair", 3000, 4.2, "Furniture"),
+            new Product("Desk", 5000, 3.9, "Furniture")
+        );
+
+        // 1) Products with rating between 4 and 5
+        System.out.println("Products with rating between 4 and 5:");
+        products.stream()
+            .filter(p -> p.getRating() >= 4 && p.getRating() <= 5)
+            .forEach(System.out::println);
+
+        // 2) First product with price > 10000
+        products.stream()
+            .filter(p -> p.getPrice() > 10000)
+            .findFirst()
+            .ifPresent(p -> System.out.println("\nFirst product with price > 10000: " + p));
+
+        // 3) Count of products by type
+        Map<String, Long> countByType = products.stream()
+            .collect(Collectors.groupingBy(Product::getType, Collectors.counting()));
+        System.out.println("\nCount of products by type: " + countByType);
+
+        // 4) Average rating of Electronics
+        double avgRating = products.stream()
+            .filter(p -> "Electronics".equals(p.getType()))
+            .mapToDouble(Product::getRating)
+            .average()
+            .orElse(0.0);
+        System.out.println("\nAverage rating of Electronics: " + avgRating);
+    }
+}
